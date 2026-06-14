@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { ArrowRight } from 'lucide-react'
 
 const FormSearch = ({ showToast }) => {
   const [mode, setMode] = useState('url')
@@ -73,15 +74,17 @@ const FormSearch = ({ showToast }) => {
           <p>Paste a direct form URL or describe what you need</p>
         </div>
 
-        <div className="search-mode-toggle glass-card">
+        <div className="search-mode-toggle-container" style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem' }}>
           <button 
-            className={`mode-btn ${mode === 'describe' ? 'active' : ''}`}
+            className={`btn ${mode === 'describe' ? 'btn-primary' : 'btn-outline'}`}
+            style={{ flex: 1 }}
             onClick={() => setMode('describe')}
           >
-            Describe Need
+            Search For Forms
           </button>
           <button 
-            className={`mode-btn ${mode === 'url' ? 'active' : ''}`}
+            className={`btn ${mode === 'url' ? 'btn-primary' : 'btn-outline'}`}
+            style={{ flex: 1 }}
             onClick={() => setMode('url')}
           >
             Paste URL
@@ -153,7 +156,7 @@ const FormSearch = ({ showToast }) => {
               onClick={handleDirectUrl}
               disabled={loading}
             >
-              {loading ? 'Processing...' : 'Verify & Continue →'}
+              {loading ? 'Processing...' : <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>Verify & Continue <ArrowRight size={16} /></span>}
             </button>
           </div>
         )}
